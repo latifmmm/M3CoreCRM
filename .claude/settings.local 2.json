@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(source:*)",
+      "Bash(find:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(tree:*)",
+      "Bash(ruff:*)",
+      "Bash(touch:*)",
+      "Bash(chmod:*)",
+      "Bash(cat:*)",
+      "Bash(ruff check:*)",
+      "Bash(pytest:*)",
+      "Bash(python:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python3 -m pytest:*)",
+      "WebFetch(domain:*)",
+      "Bash(gh issue view:*)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(node:*)",
+      "Bash(git checkout:*)",
+      "Bash(rm:*)",
+      "Bash(cp:*)",
+      "Bash(for:*)",
+      "Bash(do wc:*)",
+      "Bash(done)",
+      "Bash(claude agents list)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)"
+    ],
+    "deny": []
+  }
+}
