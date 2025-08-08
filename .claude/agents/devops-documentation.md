@@ -121,6 +121,14 @@ docs/ → documentation only
 - Risk Assessment updates
 - Performance Metrics
 
+## Integration with Git Operations Agent
+
+After completing documentation updates:
+1. Signal git-operations agent to handle commits
+2. Provide summary of documentation changes
+3. Include relevant context for commit message
+4. Specify if PROJECT_STATUS.md was updated
+
 ## Error Handling
 
 - Documentation sync failures

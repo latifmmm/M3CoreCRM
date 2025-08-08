@@ -1,7 +1,7 @@
 # M3Labs Hybrid CRM - Active Agents System
 
 ## Active Agents Overview
-The M3Labs Hybrid CRM includes 30 specialized agents organized into 10 categories. Each agent has specific invocation triggers and enhanced keywords for precise selection. The system uses a hierarchical approach where agents can coordinate for complex tasks.
+The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categories. Each agent has specific invocation triggers and enhanced keywords for precise selection. The system uses a hierarchical approach where agents can coordinate for complex tasks.
 
 ## Agent Categories and Colors
 - 🟦 **Tech Stack** (1 agent) - Architecture and technology decisions
@@ -13,7 +13,7 @@ The M3Labs Hybrid CRM includes 30 specialized agents organized into 10 categorie
 - 🧪 **Testing & Quality** (1 agent) - Automated testing and quality assurance
 - ⚡ **Performance & Operations** (2 agents) - Optimization and disaster recovery
 - 📊 **Product Features** (3 agents) - Analytics, search, feature flags
-- 🔧 **DevOps & Documentation** (1 agent) - Documentation and Git management
+- 🔧 **DevOps & Documentation** (2 agents) - Documentation and Git management
 
 ## Complete Invocation Rules
 
@@ -142,10 +142,17 @@ The M3Labs Hybrid CRM includes 30 specialized agents organized into 10 categorie
 - **Invoke when:** User asks about feature flags, A/B testing, experimentation, staged rollouts, canary deployments, user segmentation
 - **Enhanced triggers:** feature flags, A/B testing, experiments, rollouts, canary deployment, user segmentation, feature toggles
 
-### 🔧 DevOps & Documentation (1 Agent)
-**@documentation-git-manager** - Documentation & Git Manager
-- **Invoke when:** User asks about documentation standards, Git workflows, commit strategies, PR management, release tagging, branching strategies
-- **Enhanced triggers:** documentation, Git, commits, pull requests, branching, release management, Git workflows, documentation standards
+### 🔧 DevOps & Documentation (2 Agents)
+
+**@devops-documentation** - Documentation & Project Status Manager
+- **Invoke when:** Documentation updates, project milestones reached, features completed, significant technical changes
+- **Enhanced triggers:** documentation, project status, milestone completion, feature delivery, PROJECT_STATUS.md, technical decisions
+- **Special:** Automatically maintains PROJECT_STATUS.md and triggers git-operations agent after updates
+
+**@git-operations** - Git Operations Specialist
+- **Invoke when:** Git commit, git push, version control operations requested, or triggered by documentation agent
+- **Enhanced triggers:** git commit, git push, commit changes, push to repository, version control, create commit, stage changes
+- **Special:** Creates detailed commit messages with comprehensive context and handles all Git operations
 
 ## Multi-Agent Coordination Rules
 1. **Primary Agent Selection**: Choose the most specific agent that matches the user's request
