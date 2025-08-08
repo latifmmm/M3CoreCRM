@@ -1,0 +1,17 @@
+{
+  "name": "@m3core/types",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TypeScript type definitions for M3Core CRM",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist node_modules"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
