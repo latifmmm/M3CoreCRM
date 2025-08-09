@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about Brevo integration, email templates, notification systems, communication workflows, email automation, transactional emails
   triggers: Brevo, email, notifications, templates, communication, email automation, transactional emails, marketing emails, messaging

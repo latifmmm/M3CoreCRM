@@ -1,0 +1,848 @@
+openapi: 3.0.3
+info:
+  title: M3CoreCRM API
+  version: 1.0.0-seed
+  description: |
+    Seed OpenAPI spec aligned with the API Contract Master. Multi-tenant, JWT auth,
+    with placeholders for optional integrations (Stripe, Infobip, VOIP/PBX).
+servers:
+  - url: https://api.m3corecrm.com/v1
+    description: Production
+  - url: https://staging.api.m3corecrm.com/v1
+    description: Staging
+
+tags:
+  - name: Auth
+  - name: Users
+  - name: RBAC
+  - name: Leads
+  - name: Contacts
+  - name: Companies
+  - name: Deals
+  - name: Activities
+  - name: Inventory
+  - name: Notifications
+
+security:
+  - bearerAuth: []
+
+paths:
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login with email and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            examples:
+              default:
+                value: { email: "owner@acme.tld", password: "S3cret!", rememberMe: true }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Refresh access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh: { type: string }
+                device: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPair'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /auth/2fa/totp/issue:
+    post:
+      tags: [Auth]
+      summary: Issue TOTP secret for 2FA (QR URL and backup codes)
+      responses:
+        '200':
+          description: Issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TotpIssue'
+
+  /users:
+    get:
+      tags: [Users]
+      summary: List users
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/User' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Users]
+      summary: Create user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+
+  /users/{id}:
+    get:
+      tags: [Users]
+      summary: Get user
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+    patch:
+      tags: [Users]
+      summary: Update user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+
+  /leads:
+    get:
+      tags: [Leads]
+      summary: List leads
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - name: status
+          in: query
+          schema: { type: string }
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Lead' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Leads]
+      summary: Create lead
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LeadCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Lead' }
+
+  /leads/{id}:
+    get:
+      tags: [Leads]
+      summary: Get lead
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Lead' }
+    patch:
+      tags: [Leads]
+      summary: Update lead
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LeadUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Lead' }
+
+  /companies:
+    get:
+      tags: [Companies]
+      summary: List companies
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Company' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Companies]
+      summary: Create company
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CompanyCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Company' }
+
+  /contacts:
+    get:
+      tags: [Contacts]
+      summary: List contacts
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Contact' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Contacts]
+      summary: Create contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ContactCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Contact' }
+
+  /deals:
+    get:
+      tags: [Deals]
+      summary: List deals
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Deal' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Deals]
+      summary: Create deal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/DealCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Deal' }
+
+  /deals/{id}/move-stage:
+    post:
+      tags: [Deals]
+      summary: Move a deal to another stage (approval checks may apply)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [stage]
+              properties:
+                stage: { type: string }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Deal' }
+
+  /activities:
+    get:
+      tags: [Activities]
+      summary: List activities
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Activity' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Activities]
+      summary: Create activity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ActivityCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Activity' }
+
+  /inventory/projects:
+    get:
+      tags: [Inventory]
+      summary: List projects
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Project' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Inventory]
+      summary: Create project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProjectCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Project' }
+
+  /inventory/units:
+    get:
+      tags: [Inventory]
+      summary: List units
+      parameters:
+        - $ref: '#/components/parameters/TenantHeader'
+        - name: status
+          in: query
+          schema: { type: string }
+        - name: unitTypeCode
+          in: query
+          schema: { type: string }
+        - $ref: '#/components/parameters/Cursor'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Unit' }
+                  nextCursor: { type: string }
+    post:
+      tags: [Inventory]
+      summary: Create unit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UnitCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Unit' }
+
+  /notifications/send:
+    post:
+      tags: [Notifications]
+      summary: Unified send endpoint (inbox/email/SMS/WhatsApp)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [recipientUserId, channels, templateCode]
+              properties:
+                recipientUserId: { type: string, format: uuid }
+                channels:
+                  type: array
+                  items: { type: string, enum: [inbox, email, sms, whatsapp] }
+                templateCode: { type: string }
+                params:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '202':
+          description: Queued
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string, format: uuid }
+                  status: { type: string, example: queued }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    TenantHeader:
+      name: X-Tenant-Id
+      in: header
+      required: false
+      schema: { type: string, format: uuid }
+      description: Required when not using subdomain-based tenancy
+    Cursor:
+      name: cursor
+      in: query
+      schema: { type: string }
+      description: Seek pagination cursor
+    Limit:
+      name: limit
+      in: query
+      schema: { type: integer, default: 50, minimum: 1, maximum: 200 }
+      description: Page size for list endpoints
+
+  responses:
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code: { type: string, example: UNAUTHORIZED }
+                  message: { type: string, example: Invalid or expired token }
+
+  schemas:
+    TokenPair:
+      type: object
+      properties:
+        access: { type: string }
+        refresh: { type: string }
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, format: email }
+        password: { type: string, format: password }
+        rememberMe: { type: boolean, default: true }
+
+    LoginResponse:
+      type: object
+      properties:
+        user: { $ref: '#/components/schemas/User' }
+        tokens: { $ref: '#/components/schemas/TokenPair' }
+
+    TotpIssue:
+      type: object
+      properties:
+        secret: { type: string }
+        otpauthUrl: { type: string }
+        backupCodes:
+          type: array
+          items: { type: string }
+
+    User:
+      type: object
+      required: [id, email, status]
+      properties:
+        id: { type: string, format: uuid }
+        email: { type: string, format: email }
+        firstName: { type: string }
+        lastName: { type: string }
+        phone: { type: string }
+        status: { type: string, enum: [active, inactive, pending] }
+        roles:
+          type: array
+          items: { type: string }
+        groups:
+          type: array
+          items: { type: string }
+        createdAt: { type: string, format: date-time }
+
+    UserCreate:
+      type: object
+      required: [email]
+      properties:
+        email: { type: string, format: email }
+        firstName: { type: string }
+        lastName: { type: string }
+        phone: { type: string }
+        roles:
+          type: array
+          items: { type: string }
+
+    UserUpdate:
+      type: object
+      properties:
+        firstName: { type: string }
+        lastName: { type: string }
+        phone: { type: string }
+        status: { type: string, enum: [active, inactive, pending] }
+        roles:
+          type: array
+          items: { type: string }
+        groups:
+          type: array
+          items: { type: string }
+
+    Contact:
+      type: object
+      required: [id, fullName]
+      properties:
+        id: { type: string, format: uuid }
+        fullName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        companyId: { type: string, format: uuid }
+        tags:
+          type: array
+          items: { type: string }
+
+    ContactCreate:
+      type: object
+      required: [fullName]
+      properties:
+        fullName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        companyId: { type: string, format: uuid }
+
+    Company:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        industry: { type: string }
+        website: { type: string }
+        city: { type: string }
+        country: { type: string }
+
+    CompanyCreate:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        industry: { type: string }
+        website: { type: string }
+        city: { type: string }
+        country: { type: string }
+
+    Lead:
+      type: object
+      required: [id, status]
+      properties:
+        id: { type: string, format: uuid }
+        firstName: { type: string }
+        lastName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        status: { type: string, example: new }
+        source: { type: string, example: website_form }
+        score: { type: integer, example: 85 }
+        assignedTo: { type: string, format: uuid }
+        companyId: { type: string, format: uuid }
+        tags:
+          type: array
+          items: { type: string }
+        createdAt: { type: string, format: date-time }
+
+    LeadCreate:
+      type: object
+      properties:
+        firstName: { type: string }
+        lastName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        source: { type: string }
+        customFields:
+          type: object
+          additionalProperties: true
+
+    LeadUpdate:
+      type: object
+      properties:
+        firstName: { type: string }
+        lastName: { type: string }
+        email: { type: string, format: email }
+        phone: { type: string }
+        status: { type: string }
+        assignedTo: { type: string, format: uuid }
+        score: { type: integer }
+
+    Deal:
+      type: object
+      required: [id, name, stage]
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        stage: { type: string, example: proposal }
+        probability: { type: number, minimum: 0, maximum: 100 }
+        valueMinor: { type: integer }
+        currency: { type: string, example: USD }
+        contactIds:
+          type: array
+          items: { type: string, format: uuid }
+        companyId: { type: string, format: uuid }
+        pipelineId: { type: string, format: uuid }
+        expectedCloseDate: { type: string, format: date }
+        tags:
+          type: array
+          items: { type: string }
+
+    DealCreate:
+      type: object
+      required: [name, pipelineId]
+      properties:
+        name: { type: string }
+        pipelineId: { type: string, format: uuid }
+        companyId: { type: string, format: uuid }
+        contactIds:
+          type: array
+          items: { type: string, format: uuid }
+        valueMinor: { type: integer }
+        currency: { type: string }
+
+    Activity:
+      type: object
+      required: [id, type]
+      properties:
+        id: { type: string, format: uuid }
+        type: { type: string, example: call }
+        subject: { type: string }
+        dueDate: { type: string, format: date-time }
+        assignedTo: { type: string, format: uuid }
+        linkedEntity:
+          type: object
+          properties:
+            type: { type: string, enum: [lead, deal, company] }
+            id: { type: string, format: uuid }
+        notes: { type: string }
+        completed: { type: boolean }
+
+    ActivityCreate:
+      type: object
+      required: [type, subject]
+      properties:
+        type: { type: string }
+        subject: { type: string }
+        dueDate: { type: string, format: date-time }
+        assignedTo: { type: string, format: uuid }
+        linkedEntity:
+          type: object
+          properties:
+            type: { type: string, enum: [lead, deal, company] }
+            id: { type: string, format: uuid }
+        notes: { type: string }
+
+    Project:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        developerId: { type: string, format: uuid }
+        location:
+          type: object
+          properties:
+            lat: { type: number }
+            lng: { type: number }
+        status: { type: string, example: active }
+        startDate: { type: string, format: date }
+        endDate: { type: string, format: date }
+        description: { type: string }
+        mapOverlayId: { type: string, format: uuid }
+
+    ProjectCreate:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        developerId: { type: string, format: uuid }
+        location:
+          type: object
+          properties:
+            lat: { type: number }
+            lng: { type: number }
+        status: { type: string }
+        startDate: { type: string, format: date }
+        endDate: { type: string, format: date }
+        description: { type: string }
+
+    Unit:
+      type: object
+      required: [id, projectId, unitTypeCode, status]
+      properties:
+        id: { type: string, format: uuid }
+        projectId: { type: string, format: uuid }
+        unitTypeCode: { type: string, example: APT_2BR }
+        floor: { type: string }
+        status: { type: string, enum: [available, reserved, sold, off_plan] }
+        priceMinor: { type: integer }
+        currency: { type: string, example: EGP }
+        dimensions:
+          type: object
+          properties:
+            areaM2: { type: number }
+            widthM: { type: number }
+            lengthM: { type: number }
+        components:
+          type: array
+          items:
+            type: object
+            properties:
+              componentTypeCode: { type: string, example: ROOM_BED }
+              count: { type: integer }
+              dimensions:
+                type: object
+                properties:
+                  areaM2: { type: number }
+        virtualTourUrl: { type: string }
+        mapPolygonId: { type: string, format: uuid }
+
+    UnitCreate:
+      type: object
+      required: [projectId, unitTypeCode]
+      properties:
+        projectId: { type: string, format: uuid }
+        unitTypeCode: { type: string }
+        floor: { type: string }
+        status: { type: string }
+        priceMinor: { type: integer }
+        currency: { type: string }
+        dimensions:
+          type: object
+          properties:
+            areaM2: { type: number }
+            widthM: { type: number }
+            lengthM: { type: number }

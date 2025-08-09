@@ -6,7 +6,7 @@ tools:
   - Read
   - Grep
   - Glob
-model: sonnet
+model: opus
 invocation:
   invoke_when: User requests git commit, git push, version control operations, or triggered by documentation agent after updates
   triggers: git commit, git push, commit changes, push to repository, version control, create commit, stage changes, git add, git status, commit message, push code

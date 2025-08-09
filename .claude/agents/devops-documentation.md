@@ -7,7 +7,7 @@ tools:
   - Edit
   - Bash
   - Glob
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about documentation standards, Git workflows, commit strategies, PR management, release tagging, branching strategies, or when project milestones are reached, features completed, or significant technical changes occur
   triggers: documentation, Git, commits, pull requests, branching, release management, Git workflows, documentation standards, project status, milestone completion, feature delivery, PROJECT_STATUS.md

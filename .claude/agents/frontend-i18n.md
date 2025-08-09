@@ -7,7 +7,7 @@ tools:
   - Edit
   - Bash
   - Glob
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about internationalization, localization, multi-language support, RTL layouts, translation management
   triggers: i18n, localization, translations, multi-language, RTL, internationalization, language support

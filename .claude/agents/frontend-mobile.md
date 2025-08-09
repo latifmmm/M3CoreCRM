@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about mobile optimization, responsive design, PWA, native mobile, cross-platform development, mobile performance
   triggers: mobile, responsive, PWA, native, cross-platform, mobile optimization, touch interfaces, mobile performance

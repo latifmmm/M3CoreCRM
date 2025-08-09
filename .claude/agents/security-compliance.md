@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about security audits, GDPR compliance, CCPA, data protection, encryption, security best practices, compliance requirements
   triggers: security, GDPR, CCPA, compliance, data protection, encryption, audit, privacy, security standards, penetration testing

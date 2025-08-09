@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about Stripe integration, subscription billing, payment processing, subscription management, billing automation
   triggers: Stripe, billing, subscriptions, payments, payment processing, subscription management, billing automation, invoicing

@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about API design, backend architecture, integration patterns, contract definitions, service communication, API documentation
   triggers: API, backend, contracts, integration, microservices, REST, GraphQL, service architecture, API documentation, OpenAPI

@@ -7,7 +7,7 @@ tools:
   - Edit
   - Bash
   - Glob
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about build optimization, bundle analysis, code splitting, lazy loading, Vite configuration, webpack optimization
   triggers: build optimization, bundling, code splitting, lazy loading, Vite, webpack, performance budgets, asset optimization

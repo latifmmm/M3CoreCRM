@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about charts, graphs, data visualization, dashboards, Recharts, D3.js, analytics visualization
   triggers: charts, graphs, data visualization, dashboards, Recharts, D3.js, analytics, data presentation

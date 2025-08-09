@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about backup strategies, disaster recovery, restore procedures, data retention, business continuity, failover
   triggers: backup, disaster recovery, restore, data retention, business continuity, failover, RTO, RPO, backup automation

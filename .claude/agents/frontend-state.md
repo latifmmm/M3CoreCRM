@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about state management, Zustand, React Query, data fetching, client-side caching, state architecture
   triggers: state management, Zustand, React Query, data fetching, caching, state architecture, client state, server state

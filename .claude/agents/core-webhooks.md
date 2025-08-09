@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about webhooks, third-party integrations, API authentication, external service connections, integration security
   triggers: webhooks, integration, third-party, API authentication, external services, integration security, callback handling

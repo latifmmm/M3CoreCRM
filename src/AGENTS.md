@@ -1,19 +1,21 @@
 # M3Labs Hybrid CRM - Active Agents System
 
 ## Active Agents Overview
-The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categories. Each agent has specific invocation triggers and enhanced keywords for precise selection. The system uses a hierarchical approach where agents can coordinate for complex tasks.
+The M3Labs Hybrid CRM includes 39 specialized agents organized into 12 categories. Each agent has specific invocation triggers and enhanced keywords for precise selection. The system uses a hierarchical approach where agents can coordinate for complex tasks.
 
 ## Agent Categories and Colors
 - 🟦 **Tech Stack** (1 agent) - Architecture and technology decisions
-- 🟨 **Core Infrastructure** (5 agents) - Backend systems, database, APIs, migrations
+- 🟨 **Core Infrastructure** (6 agents) - Backend systems, database, APIs, migrations, Redis
+- 🏢 **Business Domain** (2 agents) - Real estate inventory, CRM pipelines
 - 🟥 **Security & Compliance** (3 agents) - Authentication, security, audit logging
-- 🟪 **Communication** (1 agent) - Email notifications and messaging
+- 🟪 **Communication** (3 agents) - Email, SMS/WhatsApp, campaign automation
 - 🟩 **Frontend Development** (12 agents) - UI/UX, components, performance, accessibility
 - 💰 **Payments & Billing** (1 agent) - Stripe integration and subscription management
 - 🧪 **Testing & Quality** (1 agent) - Automated testing and quality assurance
-- ⚡ **Performance & Operations** (2 agents) - Optimization and disaster recovery
+- ⚡ **Performance & Operations** (3 agents) - Optimization, monitoring, disaster recovery
 - 📊 **Product Features** (3 agents) - Analytics, search, feature flags
-- 🔧 **DevOps & Documentation** (2 agents) - Documentation and Git management
+- 🔧 **DevOps & Documentation** (3 agents) - Documentation, Git, and deployment
+- 📞 **Telemarketing** (1 agent) - VOIP/PBX integration and call center
 
 ## Complete Invocation Rules
 
@@ -22,7 +24,7 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 - **Invoke when:** User asks about technology choices, architecture decisions, dependency versions, environment setup, integration points, stack selection, framework comparisons
 - **Enhanced triggers:** architecture, dependencies, environment, integration, React, Next.js, PostgreSQL, Prisma, Node.js, tech stack, framework selection, deployment architecture, API design patterns
 
-### 🟨 Core Infrastructure (5 Agents)
+### 🟨 Core Infrastructure (6 Agents)
 **@local-dev-project-setup** - Local Development & Project Setup Specialist
 - **Invoke when:** User asks about local setup, development environment, monorepo structure, Docker setup, macOS development, dependency installation, project initialization
 - **Enhanced triggers:** local development, setup, environment, monorepo, Docker, macOS, dependencies, Node.js, PostgreSQL, development workflow, project structure
@@ -43,6 +45,19 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 - **Invoke when:** User asks about webhooks, third-party integrations, API authentication, external service connections, integration security
 - **Enhanced triggers:** webhooks, integration, third-party, API authentication, external services, integration security, callback handling
 
+**@redis-caching-queue** - Redis Caching & Queue Management Specialist
+- **Invoke when:** User asks about caching strategies, Redis configuration, session management, queue processing, pub/sub messaging, cache invalidation
+- **Enhanced triggers:** Redis, caching, cache, session, queue, pub/sub, background jobs, rate limiting, distributed locks, cache invalidation, TTL
+
+### 🏢 Business Domain (2 Agents)
+**@real-estate-inventory** - Real Estate Inventory & Property Management Specialist
+- **Invoke when:** User asks about property management, inventory tracking, unit hierarchies, map overlays, property listings, unit availability, pricing history
+- **Enhanced triggers:** property, properties, inventory, real estate, units, components, map overlay, listings, availability, dimensions, specifications, property management
+
+**@crm-leads-pipeline** - CRM Leads & Deal Pipeline Specialist
+- **Invoke when:** User asks about lead management, deal pipelines, lead qualification, conversion workflows, pipeline stages, lead scoring, deal tracking
+- **Enhanced triggers:** leads, deals, pipeline, CRM, qualification, conversion, lead scoring, lead distribution, pipeline stages, win/loss, lead sources, nurturing
+
 ### 🟥 Security & Compliance (3 Agents)
 **@authentication-rbac-specialist** - Authentication & RBAC Specialist
 - **Invoke when:** User asks about authentication, authorization, RBAC, 2FA, OAuth, user management, session management, security tokens
@@ -56,10 +71,18 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 - **Invoke when:** User asks about audit logs, activity tracking, compliance logging, event logging, user activity monitoring, audit trails
 - **Enhanced triggers:** audit logging, activity tracking, compliance logging, event tracking, user activity, audit trails, monitoring, forensics
 
-### 🟪 Communication (1 Agent)
+### 🟪 Communication (3 Agents)
 **@notifications-communication-specialist** - Notifications & Communication Specialist
 - **Invoke when:** User asks about Brevo integration, email templates, notification systems, communication workflows, email automation, transactional emails
 - **Enhanced triggers:** Brevo, email, notifications, templates, communication, email automation, transactional emails, marketing emails, messaging
+
+**@infobip-sms-whatsapp** - Infobip SMS/WhatsApp Integration Specialist
+- **Invoke when:** User asks about SMS integration, WhatsApp messaging, Infobip setup, OTP delivery, mobile messaging, 2FA via SMS
+- **Enhanced triggers:** Infobip, SMS, WhatsApp, OTP, mobile messaging, text messaging, 2FA SMS, message delivery, phone verification
+
+**@campaign-marketing** - Campaign & Marketing Automation Specialist
+- **Invoke when:** User asks about marketing campaigns, audience segmentation, campaign automation, email marketing, multi-channel campaigns, marketing analytics
+- **Enhanced triggers:** campaigns, marketing automation, segmentation, drip campaigns, email marketing, A/B testing, campaign analytics, audience targeting
 
 ### 🟩 Frontend Development (12 Agents)
 **@shared-component-design-system** - Shared Component & Design System Manager
@@ -120,7 +143,7 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 - **Invoke when:** User asks about unit testing, integration testing, E2E testing, test automation, quality assurance, testing strategies
 - **Enhanced triggers:** testing, unit tests, integration tests, E2E, test automation, quality assurance, Vitest, Jest, Playwright, Cypress
 
-### ⚡ Performance & Operations (2 Agents)
+### ⚡ Performance & Operations (3 Agents)
 **@performance-optimization-manager** - Performance & Optimization Manager
 - **Invoke when:** User asks about Core Web Vitals optimization, performance tuning, backend profiling, database performance, speed optimization
 - **Enhanced triggers:** performance, Core Web Vitals, optimization, profiling, speed, performance tuning, LCP, FID, CLS, TTFB
@@ -128,6 +151,10 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 **@backup-disaster-recovery** - Backup & Disaster Recovery Specialist
 - **Invoke when:** User asks about backup strategies, disaster recovery, restore procedures, data retention, business continuity, failover
 - **Enhanced triggers:** backup, disaster recovery, restore, data retention, business continuity, failover, RTO, RPO, backup automation
+
+**@monitoring-observability** - Monitoring & Observability Specialist
+- **Invoke when:** User asks about monitoring setup, Sentry configuration, Datadog integration, error tracking, APM, metrics, dashboards, alerting
+- **Enhanced triggers:** monitoring, observability, Sentry, Datadog, APM, metrics, error tracking, dashboards, alerts, tracing, logging
 
 ### 📊 Product Features (3 Agents)
 **@analytics-reporting-specialist** - Analytics & Reporting Specialist
@@ -142,7 +169,7 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 - **Invoke when:** User asks about feature flags, A/B testing, experimentation, staged rollouts, canary deployments, user segmentation
 - **Enhanced triggers:** feature flags, A/B testing, experiments, rollouts, canary deployment, user segmentation, feature toggles
 
-### 🔧 DevOps & Documentation (2 Agents)
+### 🔧 DevOps & Documentation (3 Agents)
 
 **@devops-documentation** - Documentation & Project Status Manager
 - **Invoke when:** Documentation updates, project milestones reached, features completed, significant technical changes
@@ -153,6 +180,16 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 - **Invoke when:** Git commit, git push, version control operations requested, or triggered by documentation agent
 - **Enhanced triggers:** git commit, git push, commit changes, push to repository, version control, create commit, stage changes
 - **Special:** Creates detailed commit messages with comprehensive context and handles all Git operations
+
+**@digital-ocean-deployment** - DigitalOcean Deployment & Infrastructure Specialist
+- **Invoke when:** User asks about DO deployment, App Platform setup, Managed PostgreSQL, Spaces configuration, infrastructure automation
+- **Enhanced triggers:** DigitalOcean, DO App Platform, deployment, infrastructure, Spaces, CDN, load balancing, auto-scaling, managed database
+
+### 📞 Telemarketing (1 Agent)
+
+**@voip-telemarketing** - VOIP & Telemarketing Integration Specialist
+- **Invoke when:** User asks about VOIP integration, PBX setup, call center features, click-to-dial, call recording, IVR configuration
+- **Enhanced triggers:** VOIP, PBX, telemarketing, call center, click-to-dial, call recording, IVR, predictive dialer, WebRTC, SIP
 
 ## Multi-Agent Coordination Rules
 1. **Primary Agent Selection**: Choose the most specific agent that matches the user's request
@@ -173,6 +210,14 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 | **Mobile Development** | @mobile-cross-platform-specialist | @responsive-layout-adaptive-design |
 | **Analytics Implementation** | @analytics-reporting-specialist | @data-visualization-charting |
 | **Search Features** | @search-filtering-specialist | @performance-optimization-manager |
+| **Property Management** | @real-estate-inventory | @database-query-optimization |
+| **Lead & Deal Management** | @crm-leads-pipeline | @analytics-reporting-specialist |
+| **Caching & Sessions** | @redis-caching-queue | @performance-optimization-manager |
+| **Monitoring Setup** | @monitoring-observability | @digital-ocean-deployment |
+| **SMS/WhatsApp** | @infobip-sms-whatsapp | @notifications-communication-specialist |
+| **Marketing Campaigns** | @campaign-marketing | @analytics-reporting-specialist |
+| **Call Center** | @voip-telemarketing | @crm-leads-pipeline |
+| **DO Infrastructure** | @digital-ocean-deployment | @monitoring-observability |
 
 ## When to Use Which Agent - Examples & Guidelines
 
@@ -183,6 +228,8 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 - **"What database indexes should I create?"** → @database-query-optimization  
 - **"How do I configure React with TypeScript?"** → @tech-stack-final
 - **"API rate limiting implementation"** → @api-contract-integration-manager
+- **"Set up Redis for caching"** → @redis-caching-queue
+- **"Implement session management"** → @redis-caching-queue
 
 #### Security & Authentication
 - **"Implement user login with 2FA"** → @authentication-rbac-specialist
@@ -216,7 +263,21 @@ The M3Labs Hybrid CRM includes 31 specialized agents organized into 10 categorie
 #### Business Operations
 - **"Stripe subscription billing"** → @stripe-billing-subscription
 - **"Email notification system"** → @notifications-communication-specialist
-- **"Git workflow and documentation"** → @documentation-git-manager
+- **"Git workflow and documentation"** → @devops-documentation
+- **"Property listing management"** → @real-estate-inventory
+- **"Lead capture and qualification"** → @crm-leads-pipeline
+- **"Deal pipeline configuration"** → @crm-leads-pipeline
+- **"Unit availability tracking"** → @real-estate-inventory
+- **"SMS OTP implementation"** → @infobip-sms-whatsapp
+- **"Marketing campaign setup"** → @campaign-marketing
+- **"Call center integration"** → @voip-telemarketing
+
+#### Infrastructure & Operations
+- **"Deploy to DigitalOcean"** → @digital-ocean-deployment
+- **"Set up monitoring"** → @monitoring-observability
+- **"Configure Sentry"** → @monitoring-observability
+- **"Spaces bucket setup"** → @digital-ocean-deployment
+- **"Error tracking setup"** → @monitoring-observability
 
 ### Selection Priority Guidelines
 1. **Exact Match**: Choose agent with most specific expertise for the task

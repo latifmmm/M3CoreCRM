@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about responsive layouts, breakpoints, adaptive design, cross-device compatibility, layout optimization
   triggers: responsive design, breakpoints, adaptive layout, cross-device, layout optimization, mobile-first, fluid design

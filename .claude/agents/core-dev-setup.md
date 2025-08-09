@@ -7,7 +7,7 @@ tools:
   - Edit
   - Bash
   - LS
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about local setup, development environment, monorepo structure, Docker setup, macOS development, dependency installation, project initialization
   triggers: local development, setup, environment, monorepo, Docker, macOS, dependencies, Node.js, PostgreSQL, development workflow, project structure

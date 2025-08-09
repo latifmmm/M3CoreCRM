@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about form validation, React Hook Form, Zod validation, input components, form UX, validation patterns
   triggers: forms, validation, React Hook Form, Zod, input validation, form UX, user input, field validation

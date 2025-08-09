@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about design systems, UI components, Tailwind CSS, component library, design tokens, reusable components
   triggers: design system, components, Tailwind, UI library, design tokens, component architecture, styling, CSS

@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about unit testing, integration testing, E2E testing, test automation, quality assurance, testing strategies
   triggers: testing, unit tests, integration tests, E2E, test automation, quality assurance, Vitest, Jest, Playwright, Cypress

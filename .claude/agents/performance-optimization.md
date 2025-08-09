@@ -7,7 +7,7 @@ tools:
   - Edit
   - Bash
   - Glob
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about Core Web Vitals optimization, performance tuning, backend profiling, database performance, speed optimization
   triggers: performance, Core Web Vitals, optimization, profiling, speed, performance tuning, LCP, FID, CLS, TTFB

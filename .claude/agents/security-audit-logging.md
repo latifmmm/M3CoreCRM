@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about audit logs, activity tracking, compliance logging, event logging, user activity monitoring, audit trails
   triggers: audit logging, activity tracking, compliance logging, event tracking, user activity, audit trails, monitoring, forensics

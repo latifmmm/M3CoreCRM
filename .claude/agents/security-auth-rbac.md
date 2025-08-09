@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about authentication, authorization, RBAC, 2FA, OAuth, user management, session management, security tokens
   triggers: authentication, authorization, RBAC, 2FA, OAuth, JWT, session management, user roles, security, login, permissions

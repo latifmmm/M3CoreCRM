@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about animations, transitions, microinteractions, CSS animations, motion design, UI effects
   triggers: animations, transitions, microinteractions, motion design, CSS animations, UI effects, Framer Motion

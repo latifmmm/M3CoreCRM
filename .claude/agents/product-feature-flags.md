@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about feature flags, A/B testing, experimentation, staged rollouts, canary deployments, user segmentation
   triggers: feature flags, A/B testing, experiments, rollouts, canary deployment, user segmentation, feature toggles

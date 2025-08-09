@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about accessibility, WCAG compliance, screen readers, keyboard navigation, inclusive design, usability
   triggers: accessibility, WCAG, screen readers, keyboard navigation, inclusive design, usability, a11y, ADA compliance

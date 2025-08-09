@@ -7,7 +7,7 @@ tools:
   - Edit
   - Bash
   - Glob
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about technology choices, architecture decisions, dependency versions, environment setup, integration points, stack selection, framework comparisons
   triggers: architecture, dependencies, environment, integration, React, Next.js, PostgreSQL, Prisma, Node.js, tech stack, framework selection, deployment architecture, API design patterns

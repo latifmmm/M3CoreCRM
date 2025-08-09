@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about SEO optimization, Core Web Vitals, marketing site performance, search engine optimization, metadata management
   triggers: SEO, Core Web Vitals, marketing site, search optimization, metadata, performance optimization, search rankings

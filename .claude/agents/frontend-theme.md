@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about theming systems, multi-tenant branding, light/dark mode, theme configuration, brand customization
   triggers: theming, branding, multi-tenant, light mode, dark mode, theme configuration, brand customization, design tokens

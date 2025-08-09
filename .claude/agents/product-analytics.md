@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about dashboards, reporting, analytics, KPIs, data aggregation, business intelligence, metrics tracking
   triggers: analytics, reporting, dashboards, KPIs, metrics, business intelligence, data aggregation, charts, graphs

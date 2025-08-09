@@ -7,7 +7,7 @@ tools:
   - Edit
   - Bash
   - Glob
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about data migration, import/export functionality, legacy system integration, bulk data operations, schema evolution
   triggers: migration, import, export, data transfer, legacy systems, bulk operations, schema changes, data transformation

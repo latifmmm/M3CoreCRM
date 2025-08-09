@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about search functionality, filtering systems, autocomplete, full-text search, search optimization, faceted search
   triggers: search, filtering, autocomplete, full-text search, search optimization, faceted search, elasticsearch, search performance

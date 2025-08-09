@@ -6,7 +6,7 @@ tools:
   - Write
   - Edit
   - Bash
-model: sonnet
+model: opus
 invocation:
   invoke_when: User asks about PostgreSQL optimization, database schema, indexing strategies, Prisma configuration, query performance, database migrations
   triggers: database, PostgreSQL, Prisma, queries, optimization, indexing, schema design, migrations, performance tuning, ORM
